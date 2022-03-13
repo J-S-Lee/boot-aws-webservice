@@ -36,7 +36,7 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY
 
     bucket: boot-build-s3-bucket
-    key: boot-webservice.zip
+    key: boot-aws-webservice.zip
 
     bundle_type: zip
     application: boot-webservice

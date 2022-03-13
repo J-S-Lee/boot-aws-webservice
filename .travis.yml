@@ -14,6 +14,23 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r boot-aws-webservice *
+  - mkdir -p deploy
+  - mv boot-aws-webservice.zip deploy/boot-aws-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    bucket: boot-build-s3-bucket
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy # before_deploy 에서 생성한 디렉토리
+    wait-until-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:

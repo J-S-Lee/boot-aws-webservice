@@ -23,7 +23,6 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-
     bucket: boot-build-s3-bucket
     region: ap-northeast-2
     skip_cleanup: true
@@ -34,15 +33,11 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-
     bucket: boot-build-s3-bucket
     key: boot-aws-webservice.zip
-
     bundle_type: zip
     application: boot-webservice
-
     deployment_group: boot-webservice-group
-
     region: ap-northeast-2
     wait-until-deployed: true
 
